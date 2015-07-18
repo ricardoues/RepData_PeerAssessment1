@@ -250,5 +250,5 @@ print(g)
 
 To answer the question: Are there differences in activity patterns between weekdays and weekends?
 
-**In the first graph (weekday) it shows a high peak around midday, although the second graph (weekend) also shows this behavior, it is in lesser extent. To prove statistically that there are differences in activity patterns between weekdays and weekends, it is better to consider the granger test**.
+**In the first graph (weekday) it shows a high peak around midday, although the second graph (weekend) also shows this behavior, it is in lesser extent. Another alternative is to prove statistically that there are differences in activity patterns between weekdays and weekends, which is done by the granger test**.
 
