@@ -10,7 +10,6 @@ keep_md: true
 library(lubridate)
 library(dplyr)
 library(ggplot2)
-library(lmtest)
 ```
 
 
@@ -20,7 +19,7 @@ library(lmtest)
 
 if ( !file.exists("activity.csv") )
 {
-   unzip("activity.zip")  
+     unzip("activity.zip")  
 }
 
 Activity <- read.csv(file="activity.csv")
@@ -48,16 +47,15 @@ tot.num.steps
 ```{r hist1, echo=TRUE, fig.width=6, fig.height=7}
 
 ggplot(tot.num.steps, aes(x=total)) +
-    geom_histogram(binwidth=3000, colour="black", fill="white") + 
-    xlab("Total number of steps taken each day") + 
-    ylab("Count")
+      geom_histogram(binwidth=3000, colour="black", fill="white") + 
+      xlab("Total number of steps taken each day") + 
+      ylab("Count")
 
 ```
 
 **Calculate and report the mean and median of the total number of steps taken per day**
 
 ```{r, echo=TRUE}
-
 
 mean.median <- tot.num.steps %>% 
                summarise(  mean = mean(total, na.rm = TRUE)
@@ -81,7 +79,7 @@ To answer the question: What is mean total number of steps taken per day?
 ```{r, echo=TRUE}
 
 avg.interval.steps <- Activity  %>% group_by( interval ) %>%
-                 summarise(average = mean(steps, na.rm = TRUE))
+                      summarise(average = mean(steps, na.rm = TRUE))
 
 ```
 
@@ -139,7 +137,7 @@ total.na
 ```{r, echo=TRUE}
 
 new.Activity <- Activity  %>%  group_by( interval ) %>% 
-            mutate( median.interval = median(steps, na.rm = TRUE ) ) 
+                mutate( median.interval = median(steps, na.rm = TRUE ) ) 
             
   
 new.Activity <- new.Activity %>%  
@@ -169,9 +167,9 @@ tot.num.steps
 ```{r hist2, echo=TRUE, fig.width=6, fig.height=7}
 
 ggplot(tot.num.steps, aes(x=total)) +
-    geom_histogram(binwidth=3000, colour="black", fill="white") + 
-    xlab("Total number of steps taken each day") + 
-    ylab("Count")
+      geom_histogram(binwidth=3000, colour="black", fill="white") + 
+      xlab("Total number of steps taken each day") + 
+      ylab("Count")
 
 ```
 
@@ -233,18 +231,17 @@ avg.interval.steps <- new.Activity %>%
 
 ```{r timeseries2, fig.width=7, fig.height=7, message=FALSE, echo=TRUE}
 
-
 g <- ggplot(data =avg.interval.steps, 
-            aes( x= interval, y=average, fill=type.of.day ))
+     aes( x= interval, y=average, fill=type.of.day ))
 
 
-g <- g + geom_line(size = 1.0) + xlab("5-minute interval") +  ylab("Number of steps")
+g <- g + geom_line(size = 1.0)
+
+g <- g + xlab("5-minute interval") +  ylab("Number of steps")
 
 g <- g + facet_grid( type.of.day ~ .)
 
-
 print(g)
-
 
 ```
 
