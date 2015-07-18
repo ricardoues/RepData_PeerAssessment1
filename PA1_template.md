@@ -11,7 +11,6 @@ keep_md: true
 library(lubridate)
 library(dplyr)
 library(ggplot2)
-library(lmtest)
 ```
 
 
@@ -21,7 +20,7 @@ library(lmtest)
 ```r
 if ( !file.exists("activity.csv") )
 {
-   unzip("activity.zip")  
+     unzip("activity.zip")  
 }
 
 Activity <- read.csv(file="activity.csv")
@@ -64,9 +63,9 @@ tot.num.steps
 
 ```r
 ggplot(tot.num.steps, aes(x=total)) +
-    geom_histogram(binwidth=3000, colour="black", fill="white") + 
-    xlab("Total number of steps taken each day") + 
-    ylab("Count")
+      geom_histogram(binwidth=3000, colour="black", fill="white") + 
+      xlab("Total number of steps taken each day") + 
+      ylab("Count")
 ```
 
 ![plot of chunk hist1](figure/hist1-1.png) 
@@ -103,7 +102,7 @@ To answer the question: What is mean total number of steps taken per day?
 
 ```r
 avg.interval.steps <- Activity  %>% group_by( interval ) %>%
-                 summarise(average = mean(steps, na.rm = TRUE))
+                      summarise(average = mean(steps, na.rm = TRUE))
 ```
 
 
@@ -168,7 +167,7 @@ total.na
 
 ```r
 new.Activity <- Activity  %>%  group_by( interval ) %>% 
-            mutate( median.interval = median(steps, na.rm = TRUE ) ) 
+                mutate( median.interval = median(steps, na.rm = TRUE ) ) 
             
   
 new.Activity <- new.Activity %>%  
@@ -213,9 +212,9 @@ tot.num.steps
 
 ```r
 ggplot(tot.num.steps, aes(x=total)) +
-    geom_histogram(binwidth=3000, colour="black", fill="white") + 
-    xlab("Total number of steps taken each day") + 
-    ylab("Count")
+      geom_histogram(binwidth=3000, colour="black", fill="white") + 
+      xlab("Total number of steps taken each day") + 
+      ylab("Count")
 ```
 
 ![plot of chunk hist2](figure/hist2-1.png) 
@@ -281,13 +280,14 @@ avg.interval.steps <- new.Activity %>%
 
 ```r
 g <- ggplot(data =avg.interval.steps, 
-            aes( x= interval, y=average, fill=type.of.day ))
+     aes( x= interval, y=average, fill=type.of.day ))
 
 
-g <- g + geom_line(size = 1.0) + xlab("5-minute interval") +  ylab("Number of steps")
+g <- g + geom_line(size = 1.0)
+
+g <- g + xlab("5-minute interval") +  ylab("Number of steps")
 
 g <- g + facet_grid( type.of.day ~ .)
-
 
 print(g)
 ```
